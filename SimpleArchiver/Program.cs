@@ -40,8 +40,6 @@ List<string> GetFiles(List<string> paths)
         catch (IOException e)
         {
             Console.WriteLine(e.Message);
-            Console.ReadLine();
-            throw;
         }
     }
 
