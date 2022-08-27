@@ -5,9 +5,13 @@ using SimpleArchiver.Models;
 
 var config = GetConfig();
 var sourceFiles = Directory.GetFiles(config.SourceFolder);
+
+//folder name can't contain ":" 
+var targetFolderTimeStamp = config.TargetFolder + $"\\{DateTime.Now:G}".Replace(":", "_");
+Directory.CreateDirectory(targetFolderTimeStamp);
 foreach (var sourceFile in sourceFiles)
 {
-    var targetFileName = sourceFile.Replace(config.SourceFolder, config.TargetFolder);
+    var targetFileName = sourceFile.Replace(config.SourceFolder, targetFolderTimeStamp);
     File.Copy(sourceFile, targetFileName);
 }
 
